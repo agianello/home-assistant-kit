@@ -1,0 +1,16 @@
+# Installazione Home Assistant Container — Docker Compose
+# Dal libro "Home Assistant: la Casa che Lavora per Te", Capitolo 8.2
+# Sostituisci /PATH_TO_YOUR_CONFIG con il percorso reale sul tuo host
+
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - /PATH_TO_YOUR_CONFIG:/config
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    environment:
+      - TZ=Europe/Rome
