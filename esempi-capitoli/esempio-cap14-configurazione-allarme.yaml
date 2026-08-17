@@ -1,0 +1,17 @@
+# Esempio didattico — Configurazione integrazione "Allarme manuale"
+# Dal libro "Home Assistant: la Casa che Lavora per Te", Capitolo 14.4
+# Va incollato in configuration.yaml, non in un'automazione.
+# Il codice va messo in secrets.yaml (chiave: codice_allarme), mai in chiaro qui.
+
+alarm_control_panel:
+  - platform: manual
+    name: "Allarme Casa"
+    code: !secret codice_allarme   # va in secrets.yaml, mai in chiaro
+    arming_time: 60      # secondi di preavviso per uscire di casa
+    delay_time: 30       # preavviso prima che l'allarme scatti
+    trigger_time: 300    # durata allarme/notifiche una volta scattato
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      arming_time: 0
+      delay_time: 0
