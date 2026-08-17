@@ -1,0 +1,29 @@
+# Dashboard 2 — Illuminazione per stanza
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Luci
+views:
+  - title: Illuminazione
+    path: illuminazione
+    icon: mdi:lightbulb
+    cards:
+      - type: entities
+        title: Tutte le luci — controllo rapido
+        entities:
+          - entity: light.gruppo_tutte_le_luci
+            name: "Tutto acceso/spento"
+      - type: area
+        area: soggiorno
+        display_type: compact
+      - type: area
+        area: cucina
+        display_type: compact
+      - type: area
+        area: camera_1
+        display_type: compact
+      - type: area
+        area: bagno
+        display_type: compact
+      - type: area
+        area: giardino
+        display_type: compact

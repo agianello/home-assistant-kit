@@ -1,0 +1,17 @@
+# Automazione 15 — Notifica batteria scarica sui sensori
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Batteria scarica sensori"
+triggers:
+  - trigger: numeric_state
+    entity_id:
+      - sensor.serratura_batteria
+      - sensor.porta_ingresso_batteria
+      - sensor.finestra_soggiorno_batteria
+    below: 20
+actions:
+  - action: notify.mobile_app_telefono
+    data:
+      title: "🔋 Batteria scarica"
+      message: "{{ trigger.to_state.attributes.friendly_name }} ha la batteria sotto il 20%."
+mode: queued

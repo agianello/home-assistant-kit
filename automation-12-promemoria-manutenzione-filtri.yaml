@@ -1,0 +1,28 @@
+# Automazione 12 — Promemoria manutenzione filtri
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Conta cicli condizionatore"
+triggers:
+  - trigger: state
+    entity_id: climate.soggiorno_ac
+    from: "off"
+actions:
+  - action: counter.increment
+    target:
+      entity_id: counter.cicli_condizionatore
+mode: single
+---
+alias: "Promemoria pulizia filtri"
+triggers:
+  - trigger: numeric_state
+    entity_id: counter.cicli_condizionatore
+    above: 50
+actions:
+  - action: notify.mobile_app_telefono
+    data:
+      title: "🔧 Manutenzione"
+      message: "Il condizionatore ha superato 50 cicli: è ora di pulire i filtri."
+  - action: counter.reset
+    target:
+      entity_id: counter.cicli_condizionatore
+mode: single

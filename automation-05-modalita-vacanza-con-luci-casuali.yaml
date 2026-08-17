@@ -1,0 +1,29 @@
+# Automazione 5 — Modalità "vacanza" con luci casuali
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Vacanza — luci casuali"
+description: "Simula presenza accendendo luci diverse a orari leggermente randomizzati, solo se la modalità vacanza è attiva"
+triggers:
+  - trigger: time_pattern
+    minutes: "/30"
+conditions:
+  - condition: state
+    entity_id: input_boolean.modalita_vacanza
+    state: "on"
+  - condition: sun
+    after: sunset
+    before: sunrise
+actions:
+  - action: light.turn_on
+    target:
+      entity_id: >
+        {{ ['light.soggiorno', 'light.camera_1', 'light.cucina'] | random }}
+    data:
+      # spegne dopo un tempo casuale, per un effetto più realistico
+      brightness_pct: "{{ range(40, 100) | random }}"
+  - delay: "00:{{ range(15, 45) | random }}:00"
+  - action: light.turn_off
+    target:
+      entity_id: >
+        {{ ['light.soggiorno', 'light.camera_1', 'light.cucina'] | random }}
+mode: single

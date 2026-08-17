@@ -1,0 +1,21 @@
+# Automazione 1 — Notifica lavatrice/lavastoviglie finita
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Notifica lavatrice finita"
+description: "Avvisa quando il consumo della lavatrice resta sotto soglia per 3 minuti (ciclo terminato)"
+triggers:
+  - trigger: numeric_state
+    entity_id: sensor.lavatrice_potenza
+    below: 5
+    for:
+      minutes: 3
+conditions:
+  # evita di notificare se la lavatrice era già ferma da prima (nessun ciclo avviato)
+  - condition: template
+    value_template: "{{ trigger.from_state.state | float(0) > 5 }}"
+actions:
+  - action: notify.mobile_app_telefono
+    data:
+      title: "🧺 Lavatrice finita"
+      message: "Il ciclo è terminato, puoi stendere."
+mode: single

@@ -1,0 +1,28 @@
+# Dashboard 8 — Presenza e famiglia
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Famiglia
+views:
+  - title: Presenza
+    path: presenza
+    icon: mdi:account-group
+    cards:
+      - type: glance
+        title: Chi è in casa
+        show_name: true
+        entities:
+          - entity: person.persona_1
+          - entity: person.persona_2
+      - type: map
+        title: Posizione
+        entities:
+          - entity: person.persona_1
+          - entity: person.persona_2
+        hours_to_show: 6
+      - type: entities
+        title: Zone configurate
+        entities:
+          - entity: zone.home
+            name: Casa
+          - entity: zone.lavoro
+            name: Lavoro

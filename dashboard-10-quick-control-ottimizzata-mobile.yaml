@@ -1,0 +1,28 @@
+# Dashboard 10 — "Quick control" ottimizzata mobile
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Rapido
+views:
+  - title: Rapido
+    path: rapido
+    icon: mdi:gesture-tap
+    type: sections
+    cards:
+      - type: tile
+        entity: alarm_control_panel.allarme_casa
+        name: Allarme
+      - type: tile
+        entity: lock.porta_ingresso
+        name: Porta
+      - type: tile
+        entity: light.gruppo_tutte_le_luci
+        name: Luci
+      - type: tile
+        entity: climate.soggiorno
+        name: Clima
+      - type: tile
+        entity: script.scena_buonanotte
+        name: "Buonanotte"
+      - type: tile
+        entity: cover.cancello_carraio
+        name: Cancello

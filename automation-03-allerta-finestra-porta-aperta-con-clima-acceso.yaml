@@ -1,0 +1,23 @@
+# Automazione 3 — Allerta finestra/porta aperta con clima acceso
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Finestra aperta con clima acceso"
+description: "Avvisa se una finestra resta aperta per 5 minuti con il clima attivo nella stessa stanza"
+triggers:
+  - trigger: state
+    entity_id: binary_sensor.finestra_soggiorno
+    to: "on"
+    for:
+      minutes: 5
+conditions:
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: climate.soggiorno
+        state: "off"
+actions:
+  - action: notify.mobile_app_telefono
+    data:
+      title: "🌡️ Spreco energia"
+      message: "Finestra soggiorno aperta da 5 minuti con il riscaldamento acceso."
+mode: single

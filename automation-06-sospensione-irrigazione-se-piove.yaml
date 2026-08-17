@@ -1,0 +1,27 @@
+# Automazione 6 — Sospensione irrigazione se piove
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Sospendi irrigazione se piove"
+description: "Blocca l'irrigazione programmata se il sensore di pioggia locale è attivo o il suolo è già bagnato"
+triggers:
+  - trigger: time
+    at: "06:00:00"
+conditions:
+  - condition: or
+    conditions:
+      # sensore di pioggia reale, in giardino, ha priorità sulla previsione meteo
+      - condition: state
+        entity_id: binary_sensor.pioggia
+        state: "on"
+      - condition: numeric_state
+        entity_id: sensor.umidita_suolo
+        above: 70
+actions:
+  - action: automation.turn_off
+    target:
+      entity_id: automation.irrigazione_programmata
+  - action: notify.mobile_app_telefono
+    data:
+      title: "💧 Irrigazione sospesa"
+      message: "Rilevata pioggia o suolo già bagnato: irrigazione di oggi annullata."
+mode: single

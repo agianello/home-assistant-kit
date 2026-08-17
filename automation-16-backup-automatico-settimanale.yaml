@@ -1,0 +1,21 @@
+# Automazione 16 — Backup automatico settimanale
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Backup settimanale"
+triggers:
+  - trigger: time
+    at: "03:00:00"
+conditions:
+  - condition: time
+    weekday:
+      - sun
+actions:
+  - action: backup.create
+    data:
+      name: "Backup automatico {{ now().strftime('%Y-%m-%d') }}"
+  - delay: "00:05:00"
+  - action: notify.mobile_app_telefono
+    data:
+      title: "💾 Backup completato"
+      message: "Backup settimanale eseguito con successo."
+mode: single

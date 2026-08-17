@@ -1,0 +1,18 @@
+# Dashboard 9 — Media center
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Media
+views:
+  - title: Media
+    path: media
+    icon: mdi:television
+    cards:
+      - type: media-control
+        entity: media_player.soggiorno_tv
+      - type: media-control
+        entity: media_player.soggiorno_speaker
+      - type: entities
+        title: Scene rapide
+        entities:
+          - entity: script.modalita_cinema
+            name: "🎬 Modalità cinema"

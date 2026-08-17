@@ -1,0 +1,32 @@
+# Dashboard 6 — Irrigazione
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Irrigazione
+views:
+  - title: Irrigazione
+    path: irrigazione
+    icon: mdi:sprinkler
+    cards:
+      - type: entities
+        title: Zone di irrigazione
+        entities:
+          - entity: switch.irrigazione_prato
+            name: Prato
+          - entity: switch.irrigazione_aiuole
+            name: Aiuole
+          - entity: switch.irrigazione_orto
+            name: Orto
+      - type: glance
+        title: Condizioni ambientali
+        entities:
+          - entity: binary_sensor.pioggia
+            name: Sta piovendo
+          - entity: sensor.umidita_suolo
+            name: Umidità suolo
+          - entity: sensor.livello_cisterna
+            name: Cisterna
+      - type: entities
+        title: Automazione
+        entities:
+          - entity: automation.sospendi_irrigazione_se_piove
+            name: "Sospensione automatica se piove"

@@ -1,0 +1,41 @@
+# Dashboard 1 — Home overview generale
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Casa
+views:
+  - title: Panoramica
+    path: panoramica
+    icon: mdi:home
+    cards:
+      - type: glance
+        title: Stato generale
+        entities:
+          - entity: alarm_control_panel.allarme_casa
+            name: Allarme
+          - entity: binary_sensor.porta_ingresso
+            name: Ingresso
+          - entity: climate.soggiorno
+            name: Soggiorno
+          - entity: sensor.produzione_solare
+            name: Solare
+      - type: area
+        area: soggiorno
+      - type: area
+        area: cucina
+      - type: area
+        area: camera_1
+      - type: history-graph
+        title: Temperature ultime 24h
+        hours_to_show: 24
+        entities:
+          - entity: climate.soggiorno
+          - entity: climate.camera_1
+      - type: entities
+        title: Collegamenti rapidi
+        entities:
+          - entity: script.scena_buonanotte
+            name: "🌙 Buonanotte"
+          - entity: script.scena_buongiorno
+            name: "☀️ Buongiorno"
+          - entity: script.modalita_cinema
+            name: "🎬 Cinema"

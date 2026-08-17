@@ -1,0 +1,19 @@
+# Automazione 2 — Luci automatiche al tramonto
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Luci al tramonto se qualcuno è in casa"
+triggers:
+  - trigger: sun
+    event: sunset
+    offset: "-00:15:00"
+conditions:
+  - condition: state
+    entity_id: group.famiglia
+    state: "home"
+actions:
+  - action: light.turn_on
+    target:
+      area_id: soggiorno
+    data:
+      brightness_pct: 70
+mode: single

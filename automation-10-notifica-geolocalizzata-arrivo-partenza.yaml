@@ -1,0 +1,14 @@
+# Automazione 10 — Notifica geolocalizzata arrivo/partenza
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Notifica arrivo a casa"
+triggers:
+  - trigger: state
+    entity_id: person.persona_1
+    to: "home"
+actions:
+  - action: notify.mobile_app_telefono
+    data:
+      title: "🏠 Bentornato"
+      message: "{{ trigger.to_state.attributes.friendly_name }} è arrivato a casa."
+mode: single

@@ -1,0 +1,16 @@
+# Automazione 19 — Notifica cancello/portone aperto troppo a lungo
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Cancello aperto troppo a lungo"
+triggers:
+  - trigger: state
+    entity_id: cover.cancello_carraio
+    to: "open"
+    for:
+      minutes: 15
+actions:
+  - action: notify.mobile_app_telefono
+    data:
+      title: "🚧 Cancello aperto"
+      message: "Il cancello carraio è aperto da 15 minuti."
+mode: single

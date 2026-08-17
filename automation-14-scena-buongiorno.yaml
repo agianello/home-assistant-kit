@@ -1,0 +1,26 @@
+# Automazione 14 — Scena "buongiorno"
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Buongiorno"
+triggers:
+  - trigger: time
+    at: input_datetime.orario_sveglia
+conditions:
+  - condition: state
+    entity_id: group.famiglia
+    state: "home"
+actions:
+  - action: cover.open_cover
+    target:
+      area_id: camera_1
+  - action: light.turn_on
+    target:
+      area_id: cucina
+    data:
+      brightness_pct: 100
+  - action: climate.set_temperature
+    target:
+      entity_id: climate.soggiorno
+    data:
+      temperature: 21
+mode: single

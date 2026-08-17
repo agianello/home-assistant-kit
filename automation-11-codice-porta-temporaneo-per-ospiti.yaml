@@ -1,0 +1,17 @@
+# Automazione 11 — Codice porta temporaneo per ospiti
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Codice ospite temporaneo"
+description: "Genera un codice serratura valido solo in una finestra oraria definita manualmente"
+triggers:
+  - trigger: time
+    at: input_datetime.orario_attivazione_codice_ospite
+conditions: []
+actions:
+  - action: lock.set_usercode
+    target:
+      entity_id: lock.porta_ingresso
+    data:
+      code_slot: 5
+      usercode: !secret codice_ospite_temporaneo
+mode: single

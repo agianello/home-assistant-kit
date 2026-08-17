@@ -1,0 +1,28 @@
+# Dashboard 5 — Clima e riscaldamento
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Clima
+views:
+  - title: Clima
+    path: clima
+    icon: mdi:thermostat
+    cards:
+      - type: thermostat
+        entity: climate.soggiorno
+      - type: thermostat
+        entity: climate.camera_1
+      - type: entities
+        title: Doppio controllo per stanza (climatizzatore + riscaldamento)
+        entities:
+          - entity: climate.soggiorno
+            name: "Soggiorno — riscaldamento"
+          - entity: climate.soggiorno_ac
+            name: "Soggiorno — condizionatore"
+          - entity: cover.soggiorno_tapparella
+            name: "Soggiorno — tapparella"
+      - type: history-graph
+        title: Andamento temperature
+        hours_to_show: 48
+        entities:
+          - climate.soggiorno
+          - climate.camera_1

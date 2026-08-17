@@ -1,0 +1,19 @@
+# Automazione 4 — Notifica porta aperta troppo a lungo
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Porta ingresso aperta troppo a lungo"
+triggers:
+  - trigger: state
+    entity_id: binary_sensor.porta_ingresso
+    to: "on"
+    for:
+      minutes: 10
+actions:
+  - action: notify.mobile_app_telefono
+    data:
+      title: "🚪 Porta aperta"
+      message: "La porta d'ingresso è aperta da 10 minuti."
+      data:
+        push:
+          interruption-level: time-sensitive
+mode: single

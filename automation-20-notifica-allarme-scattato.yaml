@@ -1,0 +1,34 @@
+# Automazione 20 — Notifica allarme scattato
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Allarme scattato"
+triggers:
+  - trigger: state
+    entity_id: alarm_control_panel.allarme_casa
+    to: "triggered"
+actions:
+  - action: notify.mobile_app_telefono
+    data:
+      title: "🚨 ALLARME SCATTATO"
+      message: "L'allarme di casa è scattato. Controlla la dashboard Sicurezza."
+      data:
+        push:
+          interruption-level: critical
+        actions:
+          - action: "SILENZIA_ALLARME"
+            title: "Silenzia"
+mode: single
+---
+alias: "Silenzia allarme da notifica"
+triggers:
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: "SILENZIA_ALLARME"
+actions:
+  - action: alarm_control_panel.alarm_disarm
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+    data:
+      code: !secret codice_allarme
+mode: single

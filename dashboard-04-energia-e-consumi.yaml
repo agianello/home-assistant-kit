@@ -1,0 +1,36 @@
+# Dashboard 4 — Energia e consumi
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Energia
+views:
+  - title: Energia
+    path: energia
+    icon: mdi:lightning-bolt
+    cards:
+      - type: energy-distribution
+        # la card ufficiale del pannello Energia (Cap. 15.1): mostra il flusso
+        # rete -> casa -> batteria in tempo reale, una volta configurato il pannello
+      - type: statistics-graph
+        title: Consumo di rete — ultimi 7 giorni
+        entities:
+          - sensor.energia_rete_prelievo
+        days_to_show: 7
+        period: day
+      - type: glance
+        title: Produzione e consumo istantanei
+        entities:
+          - entity: sensor.produzione_solare
+            name: Solare ora
+          - entity: sensor.potenza_casa
+            name: Casa ora
+          - entity: sensor.batteria_accumulo_percentuale
+            name: Batteria
+      - type: entities
+        title: Consumo per dispositivo
+        entities:
+          - entity: sensor.lavatrice_potenza
+            name: Lavatrice
+          - entity: sensor.lavastoviglie_potenza
+            name: Lavastoviglie
+          - entity: sensor.frigorifero_potenza
+            name: Frigorifero

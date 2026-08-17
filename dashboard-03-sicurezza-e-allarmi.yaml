@@ -1,0 +1,49 @@
+# Dashboard 3 — Sicurezza e allarmi
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Sicurezza
+views:
+  - title: Sicurezza
+    path: sicurezza
+    icon: mdi:shield-home
+    cards:
+      - type: alarm-panel
+        entity: alarm_control_panel.allarme_casa
+        name: Allarme casa
+        states:
+          - arm_home
+          - arm_away
+      - type: glance
+        title: Porte e finestre
+        show_state: true
+        entities:
+          - entity: binary_sensor.porta_ingresso
+            name: Ingresso
+          - entity: binary_sensor.finestra_soggiorno
+            name: Soggiorno
+          - entity: binary_sensor.finestra_cucina
+            name: Cucina
+          - entity: binary_sensor.finestra_camera_1
+            name: Camera 1
+          - entity: binary_sensor.cancello_carraio
+            name: Cancello
+      - type: entities
+        title: Serrature
+        entities:
+          - entity: lock.porta_ingresso
+            name: Porta d'ingresso
+          - entity: sensor.serratura_batteria
+            name: Batteria serratura
+      - type: logbook
+        title: Log attività ultime 24h
+        hours_to_show: 24
+        entities:
+          - lock.porta_ingresso
+          - alarm_control_panel.allarme_casa
+          - binary_sensor.porta_ingresso
+      - type: picture-glance
+        title: Ingresso
+        camera_image: camera.ingresso
+        entities:
+          - entity: binary_sensor.porta_ingresso
+        # rimuovi questa card se non hai una telecamera all'ingresso

@@ -1,0 +1,25 @@
+# Dashboard 7 — Elettrodomestici e notifiche
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+title: Elettrodomestici
+views:
+  - title: Elettrodomestici
+    path: elettrodomestici
+    icon: mdi:washing-machine
+    cards:
+      - type: entities
+        title: Stato elettrodomestici
+        entities:
+          - entity: sensor.lavatrice_potenza
+            name: Lavatrice (W)
+          - entity: sensor.lavastoviglie_potenza
+            name: Lavastoviglie (W)
+          - entity: binary_sensor.lavatrice_in_corso
+            name: Lavatrice — ciclo in corso
+          - entity: binary_sensor.lavastoviglie_in_corso
+            name: Lavastoviglie — ciclo in corso
+      - type: entities
+        title: Promemoria manutenzione
+        entities:
+          - entity: counter.cicli_condizionatore
+            name: Cicli condizionatore dall'ultima pulizia filtri

@@ -1,0 +1,15 @@
+# Automazione 8 — Spegnimento standby notturno automatico
+# Dal kit del libro "Home Assistant: la Casa che Lavora per Te"
+
+alias: "Spegnimento standby notturno"
+triggers:
+  - trigger: time
+    at: "23:30:00"
+actions:
+  - action: switch.turn_off
+    target:
+      entity_id:
+        - switch.presa_tv_soggiorno
+        - switch.presa_console
+        - switch.presa_router_secondario
+mode: single
