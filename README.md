@@ -11,6 +11,11 @@ Codice pronto all'uso del libro **"Home Assistant: la Casa che Lavora per Te"** 
 
 Ogni file include, come commento in testa, il numero e il titolo esatti con cui compare nel libro, così puoi ritrovare subito la spiegazione corrispondente nelle pagine corrispondenti.
 
+Oltre al kit delle 30 dashboard/automazioni, il repository include anche gli altri esempi di codice mostrati nel resto del libro (installazione e capitoli introduttivi):
+
+- **`setup/`**: i comandi per installare Home Assistant Container (Capitolo 8) — `docker-run.sh`, `docker-compose.yml`, `firewall-ufw.sh`.
+- **`esempi-capitoli/`**: automazioni introduttive/didattiche mostrate nei capitoli sull'illuminazione, sicurezza ed energia (13.6, 14.4, 16.6) — versioni semplificate, usate nel libro per spiegare un concetto passo passo. Le versioni evolute e pronte all'uso sono nel kit principale (`automation-02`, `automation-09`).
+
 ## Come usarlo
 
 1. Trova nel libro l'automazione o la dashboard che ti interessa (Capitolo 21 o 22)
