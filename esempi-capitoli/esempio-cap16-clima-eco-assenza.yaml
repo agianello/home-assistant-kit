@@ -1,0 +1,20 @@
+# Esempio didattico — Automazione base "clima in eco se casa vuota"
+# Dal libro "Home Assistant: la Casa che Lavora per Te", Capitolo 16.6
+# Versione introduttiva mostrata nel capitolo sull'energia/clima.
+# Per la versione evoluta con ripristino automatico al rientro vedi automation-09.
+
+alias: "Riscaldamento in eco quando la casa è vuota"
+description: "Abbassa la temperatura se tutti sono fuori casa"
+triggers:
+  - trigger: state
+    entity_id: group.famiglia   # gruppo con le persone di casa (Cap. 10)
+    to: "not_home"
+    for:
+      minutes: 15   # evita di abbassare per una breve uscita
+actions:
+  - action: climate.set_temperature
+    target:
+      entity_id: climate.soggiorno
+    data:
+      temperature: 17   # temperatura "eco", non spegnimento totale
+mode: single
