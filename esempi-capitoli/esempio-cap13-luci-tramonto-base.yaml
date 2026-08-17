@@ -1,0 +1,23 @@
+# Esempio didattico — Automazione base "luci al tramonto"
+# Dal libro "Home Assistant: la Casa che Lavora per Te", Capitolo 13.6
+# Versione introduttiva mostrata nel capitolo sull'illuminazione.
+# Per la versione evoluta e pronta all'uso vedi automation-02 nella cartella principale.
+
+alias: "Luci soggiorno al tramonto"
+description: "Accende le luci al tramonto, solo se in casa c'è qualcuno"
+triggers:
+  - trigger: sun
+    event: sunset
+    # offset negativo: 15 minuti prima del tramonto esatto
+    offset: "-00:15:00"
+conditions:
+  - condition: state
+    entity_id: person.demo  # la tua entità persona (Cap. 10)
+    state: "home"
+actions:
+  - action: light.turn_on
+    target:
+      area_id: soggiorno  # agisce su tutte le luci dell'area
+    data:
+      brightness_pct: 70
+mode: single
